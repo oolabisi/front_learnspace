@@ -1,0 +1,4 @@
+{
+  "baseUrl": "https://learnspacefrontend-dev.herokuapp.com",
+  "testFiles": "**/*.{feature, features}"
+}

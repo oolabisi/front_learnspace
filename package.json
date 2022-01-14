@@ -1,0 +1,22 @@
+{
+  "name": "front_learnspace",
+  "version": "1.0.0",
+  "description": "A space where investors and institution come to an agreement to teach student a particular program at an agreed fee with a certain interest",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "keywords": [
+    "cypress",
+    "cucumber"
+  ],
+  "author": "oolabisi",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^9.2.1",
+    "cypress-cucumber-preprocessor": "^4.3.1"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
+  }
+}
