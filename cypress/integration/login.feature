@@ -1,13 +1,13 @@
 Feature: General Login
   Scenario Outline: Login to LearnSpace platform
 
-    Given User is on the login page
-    When User enters username as '<username>' and password as '<password>'
-    And User clicks on the login button
-    Then User is able to successfully login to the website
+    Given I am on the login page
+    When I enter my username as '<username>' and password as '<password>'
+    And I clicks on the login button
+#    Then I should be successfully login to the website
 
     Examples:
       | username | password |
     | ogunbiyioladapo33@gmail.com | Testing1234@ |
-#    | faeyemi@gmail.com | p@ssw0rD! |
-#    | testt@test.com | Test1234@ |
+    | faeyemi@gmail.com | p@ssw0rD! |
+    | testt@test.com | Test1234@ |
