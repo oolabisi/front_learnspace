@@ -4,25 +4,35 @@ import {Given, When, Then, And} from "cypress-cucumber-preprocessor/steps";
 
 // Register
 
-Given ("I can navigate to the register page", () => {})
-Then ("I enter all the information requested", () => {
-    cy.get(".123asawfa").type("")
-    cy.get(".123asaeaq").type("")
-    cy.get("").click()
-    cy.get(".123asaeaq").click()
-    cy.get(".123asaeaq").click()
-    cy.contains("Next").should("be.visible")
-    cy.contains("Next").click()
-    cy.get(".123asawfa").type("")
-    cy.get("123asaeaq").type("")
-    cy.get("123asae90q").type("")
-    cy.get("#PrivateSwitchBase-input css-1m9pwf3").check()
-    })
-And ("I click on the register button", () => {
-    cy.contains("Create An Account").should("be.visible")
-    cy.contains("Create An Account").click()
+Given ("I can navigate to the register page", () => {
+    // cy.clearCookies()
+    // cy.clearLocalStorage()
+    cy.visit("/register")
+        .wait(3000)
 })
-Then ("I get a confirmation mail", () => {})
+Then ("I enter all the information requested", () => {
+    cy.get('[for="123asawfa"] > .icon-input > .icon-input-div').type("Group of School")
+    cy.get(':nth-child(2) > .icon-input > .icon-input-div').type("jqcfhbjimcxbswtgyd@bvhrk.com")
+    // cy.get('[for="123asaeaq"] > .icon-input > .icon-input-div').click()
+    cy.get("div").contains("Choose a type").click()
+        // .should("be.visible")
+    // cy.contains("select", "Choose a type").click()
+    // cy.get('[for="123asaeaq"]').eq(-1).click()
+    // within(div => { cy.get() })
+    // cy.get(':nth-child(3) > .icon-input > .icon-input-div').type("PROFESSIONAL").click()
+    // cy.get(':nth-child(4) > .icon-input > .icon-input-div').select("PART TIME")
+    // cy.contains("Next").should("be.visible")
+    // cy.contains("Next").click()
+    // cy.get(".123asawfa").type("AQ23123457")
+    // cy.get("123asaeaq").type("09876543RF")
+    // cy.get("123asae90q").type("Testing@123")
+    // cy.get("#PrivateSwitchBase-input css-1m9pwf3").check()
+    })
+// And ("I click on the register button", () => {
+//     cy.contains("Create An Account").should("be.visible")
+//     cy.contains("Create An Account").click()
+// })
+// Then ("I get a confirmation mail", () => {})
 
 // Email Verification
 

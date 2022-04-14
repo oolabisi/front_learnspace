@@ -1,20 +1,16 @@
 import {Given, When, Then, And} from "cypress-cucumber-preprocessor/steps";
+import SuperAdminPage from "./superAdminPage";
 
 Given("I am on the login page", () => {
-    cy.clearCookies()
-    cy.clearLocalStorage()
-    cy.visit("/login")
-
+    SuperAdminPage.Login()
 })
 
 When("I enter my username as {string} and password as {string}", (username, password) => {
-    // cy.get('#123asawfa').type(username)
-    cy.get('[for="123asawfa"] > .icon-input > .icon-input-div').type(username)
-    cy.get('#123asaeaq').type(password)
+    SuperAdminPage.LoginDetails(username, password)
 })
 
 And("I clicks on the login button", () => {
-    cy.get('.MuiButton-root').click()
+    SuperAdminPage.Submit()
 })
 
 Then("I should be successfully logged in to the website", () => {
@@ -26,73 +22,43 @@ Then("I should be successfully logged in to the website", () => {
 //  Inviting Other Admins
 
 Given("I am on the dashboard", () => {
-    cy.url({timeout: 30 * 1000}).should("include", "/dashboard")
+    cy.url().should("include", "/dashboard")  // {timeout: 30 * 1000}
 })
-
 And("I go to the Settings page", () => {
-    // cy.get('.css-102swli').click()
-    cy.get('[data-testid="SettingsIcon"]').click()
-    // {force: true}
-    cy.url().should("include", "/dashboard/settings")
+    SuperAdminPage.GoToSettings()
 })
 
 And("I click on Manage button", () => {
-    cy.get('[href="/dashboard/settings/manage-employee"]').click()
-    cy.url().should("include", "/dashboard/settings/manage-employee")
+    SuperAdminPage.GoToInviteManager()
 })
-
 When("I add the emails of the Admins I would like to invite and role", () => {
-    cy.get("#tags-standard").type("tempo0@mailpoof.com{enter}")
-    cy.get('#demo-simple-select').click()
-    cy.get('.MuiPaper-root > .MuiList-root > .Mui-selected').click()
-    // cy.get('MuiList-root MuiList-padding MuiMenu-list css-r8u8y9').select("Portfolio Manager")
+    SuperAdminPage.InviteAdminDetails()
 })
 
 And("I click on the Invite button", () => {
     cy.get('.css-1nykvlz').click()
 })
 
-// Then ("I should get a sent notification", () => {
-//     cy.get(".Toastify__toast-icon Toastify--animate-icon Toastify__zoom-enter").should("include", "An invite has been sent")
-//     // cy.get('.Toastify__toast-body > :nth-child(2)').should("include", "An invite has been sent")
-//     // cy.get("#v0p72xip0").should("have", "An invite has been sent")
-//     // cy.get('[data-top="45.60000038146973"]').should("include", "An invite has been sent")
-//     // cy.get("#tags-standard").should("include","tempo0@mailpoof.com")
-//
-// })
+Then("I should get a sent notification", () => {
+    SuperAdminPage.SendInvite()
+})
 
-
-//Adding Product
-
-// Given ("I am on the dashboard", () => {
-//     cy.url({timeout:30*1000}).should("include", "/dashboard")
-//     })
+// Adding Product
 
 Given("I click on the Add Product button", () => {
-    // cy.get(".MuiTypography-root MuiTypography-body1 css-1daj8vw").click()
-    cy.get('.MuiButton-root > .MuiTypography-root').click()
+  SuperAdminPage.GoToProductPage()
 })
 
 Then("I fill in the data for Adding a product", () => {
-    cy.url().should("include", "/dashboard/add-product")
-    cy.get("#pn").type("Psychological AI")
-    cy.get("#pd").type("Psychological AI Psychological AI Psychological AI Psychological AI")
-    cy.get("#pt").type("15")
-    cy.get("#mi").type("2500000")
-    cy.get("#fs").type("25000")
-    cy.get("#ir").type("3")
-    cy.get("#ld").type("2022-02-01")
-    cy.get("#cd").type("2022-02-04")
+ SuperAdminPage.FillProductDetails()
 })
 
 And("I Preview and Publish the product I am about to create", () => {
-    cy.contains("Preview").should("be.visible")
-    cy.contains("button","Preview").click()
+  SuperAdminPage.PreviewProduct()
 })
 
 Then("I should get a successfully created", () => {
-    cy.contains("Submit").should("be.visible")
-    cy.contains("button","Submit").click()
+    SuperAdminPage.SubmitProduct()
 })
 
 And("I should see it in the Product table", () => {
